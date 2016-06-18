@@ -4,7 +4,7 @@
 == Braces style
 I use mostly the following style
 
-* The opening left brace is at the end of the line beginning the compound statement 
+* The opening left brace is at the end of the line beginning the compound statement
 * The closing right brace is alone on a line, unless followed by the keywords "else" or "while", indented to the same column as the beginning of the compound statement.
 * Every compound statement should have a pair of braces.
 
@@ -12,11 +12,11 @@ I use mostly the following style
 ----
 class foo{
 	private int a;
-	
+
 	foo(){
 		a = 0;
 	}
-	
+
 	int get(int b, int c){
 		for(int i = 0; i < c; i++){
 			if(i < b){
@@ -55,7 +55,7 @@ The downside of this identation style is the assymetry between the opening and t
 
 [source,c++,indent=4]
 ----
-class foo 
+class foo
 {
 	private int a;
 
@@ -63,7 +63,7 @@ class foo
 	{
 		a = 0;
 	}
-	
+
 	int get(int b, int c)
 	{
 		for(int i = 0; i < c; i++)
@@ -72,18 +72,18 @@ class foo
 			{
 				bar(i);
 			}
-			else 
+			else
 			{
 				bar(i);
 				bar(b);
 			}
 		}
-		switch(a) 
+		switch(a)
 		{
 			case 1:
 				bar(1);
 				break;
-			case 2: 
+			case 2:
 			{
 				bar(2);
 				break;
@@ -117,7 +117,7 @@ class foo {
                                 baz(i);
                         }
                 }
-		}
+        }
 }
 ----
 
@@ -157,8 +157,8 @@ With the use of tabs instead of spaces, developers can choose how much to indent
 [source]
 ----
 function(){
-____verylongfunction(___verylongparam1, 
-________________________verylongparam1, 
+____verylongfunction(___verylongparam1,
+________________________verylongparam1,
 ________________________verylongparam1
 ____)
 }
@@ -169,8 +169,8 @@ and
 [source]
 ----
 function(){
-____verylongfunction(-verylongparam1, 
-____------------------verylongparam1, 
+____verylongfunction(-verylongparam1,
+____------------------verylongparam1,
 ____------------------verylongparam1
 ____)
 }
@@ -181,8 +181,8 @@ If someone sets the width of the tab to 3 units instead of 4, he will see
 [source]
 ----
 function(){
-____verylongfunction(_verylongparam1, 
-__________________verylongparam1, 
+____verylongfunction(_verylongparam1,
+__________________verylongparam1,
 __________________verylongparam1
 ___)
 }
@@ -193,8 +193,8 @@ and
 [source]
 ----
 function(){
-___verylongfunction(-verylongparam1, 
-___------------------verylongparam1, 
+___verylongfunction(-verylongparam1,
+___------------------verylongparam1,
 ___------------------verylongparam1
 ___)
 }
@@ -219,7 +219,7 @@ This also means that empty lines are not indented (or they wouldn't be really em
 
 == Line length
 The maximum line lenght should be between 80 and 120 characters.
-	
+
 Most policies use 80 characters; the problem is that after indenting 3 or 4 times (namespace, class, function declaration, and a couple of branches), with an identation of 4 character, you may have less than 60 characters left for writing your code.
 
 Also when writing comments, maybe with a link to a webpage, 60 or less characters are very few.
