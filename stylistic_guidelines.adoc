@@ -1,0 +1,298 @@
+= https://github.com/fekir/stylistic_guidelines[Styling Guidelines]
+
+
+== Braces style
+I use mostly the following style
+
+* The opening left brace is at the end of the line beginning the compound statement 
+* The closing right brace is alone on a line, unless followed by the keywords "else" or "while", indented to the same column as the beginning of the compound statement.
+* Every compound statement should have a pair of braces.
+
+[source,c++,indent=4]
+----
+class foo{
+	private int a;
+	
+	foo(){
+		a = 0;
+	}
+	
+	int get(int b, int c){
+		for(int i = 0; i < c; i++){
+			if(i < b){
+				bar(i);
+			} else {
+				bar(i);
+				bar(b);
+			}
+		}
+		switch(a){
+			case 1:
+				bar(1);
+				break;
+			case 2:{
+				bar(2);
+				break;
+			}
+			case 3:
+			default:
+				bar(3);
+				break;
+		}
+		return a;
+	}
+}
+----
+
+If the statement is short enough we may write the opening and closing brace on the same line
+[source,c++]
+----
+if(p==nullptr){ throw std::runtime_error("null pointer!")}
+----
+
+
+The downside of this identation style is the assymetry between the opening and the closing braces.Alternatively you could write the opening brace on the next line in the same column
+
+[source,c++,indent=4]
+----
+class foo 
+{
+	private int a;
+
+	foo()
+	{
+		a = 0;
+	}
+	
+	int get(int b, int c)
+	{
+		for(int i = 0; i < c; i++)
+		{
+			if(i < b)
+			{
+				bar(i);
+			}
+			else 
+			{
+				bar(i);
+				bar(b);
+			}
+		}
+		switch(a) 
+		{
+			case 1:
+				bar(1);
+				break;
+			case 2: 
+			{
+				bar(2);
+				break;
+			}
+			case 3:
+			default:
+				bar(3);
+				break;
+		}
+		return a;
+	}
+}
+----
+
+Now the code is more hard to read since there are too lines without statements.
+If your code is too dense, simply add some empty lines instead of moving the braces and change the style of the code.
+
+
+== Indentation
+A proper indentation will make the code easier to read and understandable. In my opinion, an indentation of 3-4 unit points is perfect. Most people will probably agree on 4 unit points, but I know some people will prefer to use only 2 unit points, and others 8 unit points.
+
+In large sections of code containing many compound statements nested on many levels of indentation, it's easy to lose track of the block boundary, so you may prefer using large blocks of indentation. You also have to consider that your monitor has a maximum number of characters that it can display on one line. If you are using an IDE that has a lateral menu providing other information, you'll probably have between 80 and 180 characters.
+
+Using 8 spaces would give us the following snippet. In my opinion the code is more difficult to read, because there is to much blank space
+[source,c++,indent=8]
+----
+class foo {
+        void bar(int b, int c){
+                for (int i = 0; i < c; i++){
+                        if (i < b){
+                                baz(i);
+                        }
+                }
+		}
+}
+----
+
+Whereas using only two spaces will make the code too dense and I might miss some identation when reading it
+[source,c++,indent=2]
+----
+class foo{
+  int get(int b, int c){
+    for(int i = 0; i < c; i++){
+      if(i < b){
+        bar(i);
+      } else {
+        bar(i);
+        bar(b);
+      }
+    }
+    switch(a){
+      case 1:
+        bar(1);
+        break;
+      case 2:{
+        bar(2);
+        break;
+      }
+      case 3:
+      default:
+        bar(3);
+        break;
+    }
+    return a;
+  }
+}
+----
+
+With the use of tabs instead of spaces, developers can choose how much to indent the code. Every tab should be equal to one logical indentation. At this point most people confuse indentation with alignement; you should use tabs for indenting your code, and spaces for aligning it. It is important to make this distinction, or your code might get mixed up; in the following example tabs have been replaced with an underscore and spaces a minus, to highlight the difference:
+
+[source]
+----
+function(){
+____verylongfunction(___verylongparam1, 
+________________________verylongparam1, 
+________________________verylongparam1
+____)
+}
+----
+
+and
+
+[source]
+----
+function(){
+____verylongfunction(-verylongparam1, 
+____------------------verylongparam1, 
+____------------------verylongparam1
+____)
+}
+----
+
+If someone sets the width of the tab to 3 units instead of 4, he will see
+
+[source]
+----
+function(){
+____verylongfunction(_verylongparam1, 
+__________________verylongparam1, 
+__________________verylongparam1
+___)
+}
+----
+
+and
+
+[source]
+----
+function(){
+___verylongfunction(-verylongparam1, 
+___------------------verylongparam1, 
+___------------------verylongparam1
+___)
+}
+----
+
+In the examples where the tab character was also used for alignment, the code seems to be aligned incorrectly .
+
+The problem is that you normally do not change the width of the tab, and may never notice those errors. Most editors permit to dispaly tabs and whitespaces.
+
+If you are unsure, use tabs, it's easier to convert them to spaces with any editor. It's not that easy the other way around, unless you are using an editor with good autoformatting capabilities.
+
+
+Notice that in https://www.python.org[python] and probably other languages, you have to use spaces for identation (even if this is wrong!).
+https://en.wikipedia.org/wiki/Whitespace_%28programming_language%29[Whitespace] is one of those languages where the difference between tabs and spaces is really important.
+
+== Braces style (2)
+Every if-clause should have corresponding braces since it makes code more robust (and easier to read) if someone copy-pastes it, if the identation is wrong, or if someone adds another statement and didn't notice the braces where missing.
+
+== Trimming
+Every line should be right-trimmed, even if it doesn't change aesthetically (if you do not set your editor to show whitespace characters).
+This also means that empty lines are not indented (or they wouldn't be really empty!)
+
+== Line length
+The maximum line lenght should be between 80 and 120 characters.
+	
+Most policies use 80 characters; the problem is that after indenting 3 or 4 times (namespace, class, function declaration, and a couple of branches), with an identation of 4 character, you may have less than 60 characters left for writing your code.
+
+Also when writing comments, maybe with a link to a webpage, 60 or less characters are very few.
+
+All modern monitors are able to display 120 and more characters on one line; but most code does not take up that much space and too long lines are more difficult to read.
+
+Nevertheless my experience shows that most code (80% and maybe more) fits into 80 characters. Most of the remaining code fits in 120 characters and is still readable since it is not that much. If it occupies more than 120 characters then it is mostly a constant string/array (that can be written on multiple lines), a comment (maybe a link), or some piece of code that can easily get refactored on mutliple lines (maybe a function with a lot of parameters).
+
+
+== Naming convention
+Many languages are type safe (C++, Java, Rust, ..-), some have added type safety (PHP), and some are not (Python). There are static analyzers for nearly all languages, so you should avoid the Systems Hungarian notation (prefix variable with its own type). The Apps Hungarian notation is on the other hand very good, since it encodes the logical data type. If you can also encode the logical data type in a type safe manner (for example a separate struct), you could drop the hungarian notation completely, even if it might be harder to read and write code at the beginning, since you may need to do more conversions.
+
+A variable name should give the reader a hint about what you can or should do, given the content in that context. The type of the variable is already written in the declaration.
+
+C and C++ do not have an official naming convention, whereas Java and Python have standard practices. You should firstly use the common/expected conventions, then add your own.
+
+
+== Length of function
+Ideally you should be able to read the whole content of a function without scrolling.
+
+
+== Spacing
+White space should be used to enhance readability. It's very difficult create a generic rule when or why you should add a space somewhere.
+
+I tend to use a space when using the operators +, -, *, /, ..., and after ';' for example
+----
+for(int i = 0; i < a; i++)
+----
+
+and I do not put it after "for", "while", and "if" statements
+
+== Parenthesis
+Optional parenthesis should be added when it helps to improve readibility, for example
+----
+if( (a&&b) || (c!=d) )
+----
+may be better than (and makes you avoid errors with the precedence of the and and or operator)
+----
+if( a&&b || c!= d)
+----
+Do not exagerate, since too many parenthesis will cause confusion.
+
+== Comments
+If possible use single-line comments, so that it is possible to wrap them in multi-line comments. Avoid
+
+----
+/* one-liner */
+function(){
+....
+}
+----
+
+prefer
+----
+// one-liner
+function(){
+
+}
+----
+
+so that if you need to comment out temporarily a block of code, you do not need to resort to editor specific features for adding "//" on every line, adding them manually, or using other tools like macros.
+
+As a corollary, prefer following doxygen syntax
+
+----
+/// this is valid doxygen
+----
+
+instead of
+
+----
+/**
+ * This is also valid doxygen
+ */
+----
+

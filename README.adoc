@@ -1,0 +1,25 @@
+= https://github.com/fekir/stylistic_guidelines[Styling Guidelines]
+
+== Introduction
+The link:stylistic_guidelines.adoc[Stylistic Guideline] are a repository containing rationales about styling decisions about how to write code.
+Since this is a guideline about style and not coding conventions (even if often the two terms are used interchangeably), it may not fit on most projects but mine.
+
+This repository also contains configuration files for different tools, like IDEs (Qt Creator, ...) and static analyzers (clang, astyle, ...).
+
+If you are searching guidelines for writing safe code, you should take a look at the http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines[C++ Core Guidelines].
+
+== Getting started
+
+Read the guidelines, decide if you like them, adapt them for your project and start using them.
+
+== Contributions
+Stylistic guidelines are mostly personal, but if you think there are some points that can be improved or are not clear, feel free to ask.
+
+
+
+== What you won't find here
+
+Guidelines like "use std::vector instead std::list" in C++, or "avoid java.utils.vector" in Java, are about performance and that's why they do not belong here.
+Also guidelines like "use RAII" in C++ or "use AutoCloseable" in Java, are about assuring the absence of leaks and do not belong here either.
+
+
