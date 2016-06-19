@@ -1,0 +1,64 @@
+= https://github.com/fekir/stylistic_guidelines[Styling Guidelines]
+
+== Workflow
+Everyone has their favorite workflow, the same is true when applying guidelines (stylistic or not).
+
+The problem with most tools, as far as I know, is that they do not issue a warning when a guideline is not respected, but they "fix" the code. Problem may arise in some particular cases, and you may miss them if one of this tool runs automatically before committing in your repository.
+
+I prefer to run this tools manually, so that I can give a last look to the code before committing. In this case the formatting tools won't run automatically and you may forget to use them. The code may therefore break in some points the guidelines, but the important point is that it works, and that it is readable.
+
+
+Here is my workflow:
+
+Checkout the code on which you want to work
+
+[listing]
+git checkout
+
+Work on the code, add functionality, fix issues, and so on...
+When we have finished to working on the code, we will apply the guidelines, so check the state
+
+[listing]
+git state
+
+Eventually diff the changed files to see what we are going to commit
+
+[listing]
+git diff <filename>
+
+Now we are going to stage the files we are interested
+
+[listing]
+git add <filename>
+
+If there are other files, and we want to revert the changes on those, simply checkout to undo them
+[listing]
+git checkout
+
+Now we are going to apply the desired formatting tool on every C++ source file, for example uncrustify
+[listing]
+uncrustify -c /path/to/config/file --no-backup *.*pp
+
+
+We can verify the status again, to see all files that have been changed
+
+[listing]
+git state
+
+
+And diff all staged files and view the changes applied by the formatting tool
+
+[listing]
+git diff <filename>
+
+
+Now we may edit the changes made by the formatting tool, stage the file again with git add, and commit it.
+
+
+If you want to see the diff of a file that has already been staged, without unstaging it, use the --cached parameter:
+[listing]
+git diff --cached <filename>
+
+
+Of course there are graphical tools for working with git too, you do not have to use the CLI.
+
