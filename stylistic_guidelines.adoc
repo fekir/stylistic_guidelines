@@ -8,7 +8,7 @@ I use mostly the following style
 * The closing right brace is alone on a line, unless followed by the keywords "else" or "while", indented to the same column as the beginning of the compound statement.
 * Every compound statement should have a pair of braces.
 
-[source,c++,indent=4]
+[source,c++]
 ----
 class foo{
 	private int a;
@@ -45,6 +45,7 @@ class foo{
 ----
 
 If the statement is short enough we may write the opening and closing brace on the same line
+
 [source,c++]
 ----
 if(p==nullptr){ throw std::runtime_error("null pointer!")}
@@ -53,7 +54,7 @@ if(p==nullptr){ throw std::runtime_error("null pointer!")}
 
 The downside of this indentation style is the asymmetry between the opening and the closing braces. Alternatively you could write the opening brace on the next line in the same column
 
-[source,c++,indent=4]
+[source,c++]
 ----
 class foo
 {
@@ -108,7 +109,8 @@ A proper indentation will make the code easier to read and understandable. In my
 In large sections of code containing many compound statements nested on many levels of indentation, it's easy to lose track of the block boundary, so you may prefer using large blocks of indentation. You also have to consider that your monitor has a maximum number of characters that it can display on one line. If you are using an IDE that has a lateral menu providing other information, you'll probably have between 80 and 180 characters.
 
 Using 8 spaces would give us the following snippet. In my opinion the code is more difficult to read, because there is to much blank space
-[source,c++,indent=8]
+
+[source,c++]
 ----
 class foo {
         void bar(int b, int c){
@@ -122,7 +124,8 @@ class foo {
 ----
 
 Whereas using only two spaces will make the code too dense and I might miss some indentation when reading it
-[source,c++,indent=2]
+
+[source,c++]
 ----
 class foo{
   int get(int b, int c){
@@ -202,7 +205,7 @@ ___)
 
 In the examples where the tab character was also used for alignment, the code seems to be aligned incorrectly .
 
-Since you normally do not change the width of the tab, those error may never get spotted unless someone else is working on the same code. Most editors have an option for displaying tabs and whitespaces, consider enabling it since it may help a lot for avoiding these type of errors.
+Since you normally do not change the width of the tab, those error may never get spotted unless someone else is working on the same code. Most editors have an option for displaying tabs and white spaces, consider enabling it since it may help a lot for avoiding these type of errors.
 
 If you are unsure, use tabs, it's easier to convert them to spaces with any editor. It's not that easy the other way around, unless you are using an editor with good auto-formatting capabilities.
 
@@ -226,7 +229,7 @@ Also when writing comments, maybe with a link to a webpage, 60 or less character
 
 All modern monitors are able to display 120 and more characters on one line; but most code does not take up that much space and too long lines are more difficult to read.
 
-Nevertheless my experience shows that most code (80% and maybe more) fits into 80 characters. Most of the remaining code fits in 120 characters and is still readable since it is not that much. If it occupies more than 120 characters then it is mostly a constant string/array (that can be written on multiple lines), a comment (maybe a link), or some piece of code that can easily get refactored on mutliple lines (maybe a function with a lot of parameters).
+Nevertheless my experience shows that most code (80% and maybe more) fits into 80 characters. Most of the remaining code fits in 120 characters and is still readable since it is not that much. If it occupies more than 120 characters then it is mostly a constant string/array (that can be written on multiple lines), a comment (maybe a link), or some piece of code that can easily get refactored on multiple lines (maybe a function with a lot of parameters).
 
 
 == Naming convention
@@ -320,7 +323,7 @@ instead of
  */
 ----
 
-Most people tend to use multiline comment in C source code, even if single-line comments are avaiable in ANSI C since 1999 (nearly 20 years).
+Most people tend to use multiline comment in C source code, even if single-line comments are available in ANSI C since 1999 (nearly 20 years).
 
 
 == include/import order
@@ -361,6 +364,7 @@ The constructors (and copy/move operators) should be grouped together and placed
 You should define the member variables before the methods that use them.
 
 In C++
+
 [source,c++]
 ----
 class my_class{
@@ -379,6 +383,7 @@ class my_class{
 ----
 
 In Java
+
 [source,java]
 ----
 class MyClass{
@@ -398,6 +403,7 @@ class MyClass{
 
 == Variable declaration
 You should declare every variable separately, declaring more variable together should be avoided, since it can get misleading, for example:
+
 ----
 char* p, q;
 ----
@@ -415,18 +421,21 @@ Is error prone to write and annoying to read.
 You should put repetitive code in functions, if it's code for initializing a class/struct, then put it in the constructor, if it's for freeing resources, put it in a destructor/finalizer.
 
 Initializing a variable only once make's it more easy to reason about it's value/state, compare
+
 ----
 string a;
 get(a);
 a.trim()
 ----
 
-against (assuming you can change the signaure of the "get" function)
+against (assuming you can change the signature of the "get" function)
+
 ----
 string a = get().trim()
 ----
 
 In C++ you can also use auto to avoid writing long identifiers for the variable type, for example the following two lines
+
 [source,c++]
 ----
 const auto cit = my_vector.cbegin()
@@ -434,6 +443,7 @@ const std::vector<std::string>::const_iterator cit = my_vector.cbegin();
 ----
 
 have exactly the same meaning. If for some reason you can't use auto, you can use a typedef or using:
+
 [source,c++]
 ----
 using vec_strin_citer = std::vector<std::string>::const_iterator
@@ -441,6 +451,7 @@ const vec_strin_citer cit = my_vector.cbegin()
 ----
 
 In Java you can use the diamond notation, following lines have exactly the same meaning:
+
 [source,java]
 ----
 Map<String, List<String>> anagrams = new HashMap<String, List<String>>();
@@ -451,12 +462,14 @@ Map<String, List<String>> anagrams = new HashMap<>();
 == Number of parameters
 Functions (or constructors) with to many parameters are difficult to read and use correctly.
 Consider the followin signature:
+
 [source, c++]
 ----
 HWND CreateWindowEx(DWORD dwExStyle, LPCTSTR lpClassName, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam);
 ----
 
 The signature of the function alone is taking more than 180 characters, so we need to split it on multiple lines.
+
 [source, c++]
 ----
 HWND CreateWindowEx(
@@ -475,7 +488,8 @@ HWND CreateWindowEx(
 );
 ----
 
-The same problema appears when we want to use that function, we need to split it on multiple lines
+The same problem appears when we want to use that function; we need to split it on multiple lines
+
 [source, c++]
 ----
 hwnd = CreateWindowEx(
@@ -486,7 +500,9 @@ hwnd = CreateWindowEx(
         CW_USEDEFAULT, CW_USEDEFAULT, 240, 120,
         nullptr, nullptr, hInstance, nullptr);
 ----
+
 but that does not improve the readability, without looking at the documentation or at the signature, if one simply reads the code where the function is used, he will not understand the meaning of most parameters, for example where nullptr or a number is passed. Of course you could save every parameter to a separate variable, for example
+
 [source, c++]
 ----
 const int x = CW_USEDEFAULT;
@@ -502,9 +518,9 @@ const hwnd = CreateWindowEx(
         x, y, width, height,
         nullptr, nullptr, hInstance, nullptr);
 ----
-But this process is errorprone, and you need to write a lot more code.
+But this process is error prone, and you need to write a lot more code.
 
-A better solution is to simply write function that needs at most 3 or four parameters. You can always pass structs/classes to give the function more flexibility, and in this way (not in C) you can also define default values, for example:
+A better solution is to simply write function that needs at most 3 or four parameters. You can always pass structures or classes to give the function more flexibility, and in this way (not in C) you can also define default values, for example:
 
 [source, c++]
 ----
@@ -542,7 +558,7 @@ size_pos.height = 120;
 const hwnd = CreateWindowEx(params, size_pos);
 ----
 
-By grouping together the parameters, we do not need to break a statement on multiple lines. For simple cases a struct is more than enough, for more complex cases you may provide a constructor for improving readibility. In the declaration we could write
+By grouping together the parameters, we do not need to break a statement on multiple lines. For simple cases a struct is more than enough, for more complex cases you may provide a constructor for improving readability. In the declaration we could write
 
 [source, c++]
 ----
