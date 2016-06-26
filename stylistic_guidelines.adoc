@@ -539,8 +539,8 @@ struct CreateWindowExParam {
 struct size_and_position {
 	int x = CW_USEDEFAULT;
 	int y = CW_USEDEFAULT;
-	int width = 120;
-	int height = 120;
+	int width = CW_USEDEFAULT;
+	int height = CW_USEDEFAULT;
 };
 
 HWND CreateWindowEx(const CreateWindowExParam& params, const size_and_position& s_p);
