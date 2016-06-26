@@ -461,7 +461,7 @@ Map<String, List<String>> anagrams = new HashMap<>();
 
 == Number of parameters
 Functions (or constructors) with to many parameters are difficult to read and use correctly.
-Consider the followin signature:
+Consider the following function (taken from https://msdn.microsoft.com/en-us/library/windows/desktop/ms632680(v=vs.85).aspx[msdn]):
 
 [source, c++]
 ----
