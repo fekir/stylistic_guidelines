@@ -447,3 +447,110 @@ Map<String, List<String>> anagrams = new HashMap<String, List<String>>();
 Map<String, List<String>> anagrams = new HashMap<>();
 ----
 
+
+== Number of parameters
+Functions (or constructors) with to many parameters are difficult to read and use correctly.
+Consider the followin signature:
+[source, c++]
+----
+HWND CreateWindowEx(DWORD dwExStyle, LPCTSTR lpClassName, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam);
+----
+
+The signature of the function alone is taking more than 180 characters, so we need to split it on multiple lines.
+[source, c++]
+----
+HWND CreateWindowEx(
+  DWORD dwExStyle,
+  LPCTSTR lpClassName,
+  LPCTSTR lpWindowName,
+  DWORD dwStyle,
+  int x,
+  int y,
+  int nWidth,
+  int nHeight,
+  HWND hWndParent,
+  HMENU hMenu,
+  HINSTANCE hInstance,
+  LPVOID lpParam
+);
+----
+
+The same problema appears when we want to use that function, we need to split it on multiple lines
+[source, c++]
+----
+hwnd = CreateWindowEx(
+        WS_EX_CLIENTEDGE,
+        L"class name",
+        L"title name,
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, 240, 120,
+        nullptr, nullptr, hInstance, nullptr);
+----
+but that does not improve the readability, without looking at the documentation or at the signature, if one simply reads the code where the function is used, he will not understand the meaning of most parameters, for example where nullptr or a number is passed. Of course you could save every parameter to a separate variable, for example
+[source, c++]
+----
+const int x = CW_USEDEFAULT;
+const int y = CW_USEDEFAULT;
+const int width = 240;
+const int height = 120;
+
+const hwnd = CreateWindowEx(
+        WS_EX_CLIENTEDGE,
+        L"class name",
+        L"title name",
+        WS_OVERLAPPEDWINDOW,
+        x, y, width, height,
+        nullptr, nullptr, hInstance, nullptr);
+----
+But this process is errorprone, and you need to write a lot more code.
+
+A better solution is to simply write function that needs at most 3 or four parameters. You can always pass structs/classes to give the function more flexibility, and in this way (not in C) you can also define default values, for example:
+
+[source, c++]
+----
+// declarations
+struct CreateWindowExParam {
+	DWORD dwExStyle = WS_EX_CLIENTEDGE;
+	LPCTSTR lpClassName = nullptr;
+	LPCTSTR lpWindowName = nullptr;
+	DWORD dwStyle = WS_OVERLAPPEDWINDOW;
+	HWND hWndParent = nullptr;
+	HMENU hMenu = nullptr;
+	HINSTANCE hInstance = nullptr;
+	LPVOID lpParam = nullptr;
+};
+
+struct size_and_position {
+	int x = CW_USEDEFAULT;
+	int y = CW_USEDEFAULT;
+	int width = 120;
+	int height = 120;
+};
+
+HWND CreateWindowEx(const CreateWindowExParam& params, const size_and_position& s_p);
+
+// usage
+CreateWindowExParam params;
+params.lpClassName = "class name";
+params.lpWindowName = "windows name";
+params.hInstance = hInstance;
+
+size_and_position size_pos;
+size_pos.width = 240;
+size_pos.height = 120;
+
+const hwnd = CreateWindowEx(params, size_pos);
+----
+
+By grouping together the parameters, we do not need to break a statement on multiple lines. For simple cases a struct is more than enough, for more complex cases you may provide a constructor for improving readibility. In the declaration we could write
+
+[source, c++]
+----
+HWND CreateWindowEx(const CreateWindowExParam&, const size_and_position&);
+----
+without loosing much information, whereas
+[source, c++]
+----
+HWND CreateWindowEx(DWORD, LPCTSTR, LPCTSTR, DWORD, int, int, int, int, HWND, HMENU, HINSTANCE , LPVOID);
+----
+is more difficult to understand.
