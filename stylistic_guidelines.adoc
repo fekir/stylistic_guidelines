@@ -233,11 +233,11 @@ Nevertheless my experience shows that most code (80% and maybe more) fits into 8
 
 
 == Naming convention
-Many languages are type safe (C++, Java, Rust, ...), some have added type safety (PHP), and some are not (Python). There are static analyzers for nearly all languages, so you should avoid the Systems Hungarian notation (prefix variable with its own type). The Apps Hungarian notation is on the other hand very good, since it encodes the logical data type. If you can also encode the logical data type in a type safe manner (for example a separate struct), you could drop the Hungarian notation completely, even if it could be harder to read and write code, since you may need to do more conversions.
+Many languages are type safe ({cpp}, Java, Rust, ...), some have added type safety (PHP), and some are not (Python). There are static analyzers for nearly all languages, so you should avoid the Systems Hungarian notation (prefix variable with its own type). The Apps Hungarian notation is on the other hand very good, since it encodes the logical data type. If you can also encode the logical data type in a type safe manner (for example a separate struct), you could drop the Hungarian notation completely, even if it could be harder to read and write code, since you may need to do more conversions.
 
 A variable name should give the reader a hint about what you can or should do, given the content in that context. The type of the variable is already written in the declaration.
 
-C and C++ do not have an official naming convention, whereas Java and Python have standard practices. You should firstly use the common/expected conventions, then add your own.
+C and {cpp} do not have an official naming convention, whereas Java and Python have standard practices. You should firstly use the common/expected conventions, then add your own.
 
 === camelcase/PascalCase vs snake_case
 The snake_case convention has following advantages:
@@ -329,7 +329,7 @@ Most people tend to use multiline comment in C source code, even if single-line 
 == include/import order
 Normally you need to define at the begin of the file which function/classes/headers you are going to use. AFAIK order does not really matter.
 You should go from local to global, include local headers (or import local classes) first, and then the global ones.
-In C++ you should write
+In {cpp} you should write
 
 [source,c++]
 ----
@@ -363,7 +363,7 @@ You should omit the empty sections.
 The constructors (and copy/move operators) should be grouped together and placed before the public methods (if they are public too).
 You should define the member variables before the methods that use them.
 
-In C++
+In {cpp}
 
 [source,c++]
 ----
@@ -409,7 +409,7 @@ char* p, q;
 ----
 So simply don't do that.
 
-You should also initialize your variable when you declare it. In most languages declaring and initializing is the same thing, but not in C and C++. Still, if there is no sensible value for your type, there should be no reason for declaring it. In some programming languages, like Pascal, you need to declare all your variables at the begin of the function, if you do not have that restriction, you should declare you variable just where you need them, doing so makes the code easier to read because
+You should also initialize your variable when you declare it. In most languages declaring and initializing is the same thing, but not in C and {cpp}. Still, if there is no sensible value for your type, there should be no reason for declaring it. In some programming languages, like Pascal, you need to declare all your variables at the begin of the function, if you do not have that restriction, you should declare you variable just where you need them, doing so makes the code easier to read because
 
 * Even if the function is very long (and you should avoid that) and the variable is only used in a couple of spaces, you can see it's type without using the Systems Hungarian notation.
 * Even if the control flow gets complicated, you can be sure that the variable is initialized to a sensible value.
@@ -434,7 +434,7 @@ against (assuming you can change the signature of the "get" function)
 string a = get().trim()
 ----
 
-In C++ you can also use auto to avoid writing long identifiers for the variable type, for example the following two lines
+In {cpp} you can also use auto to avoid writing long identifiers for the variable type, for example the following two lines
 
 [source,c++]
 ----

@@ -19,5 +19,5 @@ Stylistic guidelines are mostly personal, but if you think there are some points
 
 == What you won't find here
 
-Guidelines like "use std::vector instead of std::list" in C++, or "avoid java.utils.vector" in Java, are about performance and that's why they do not belong here.
-Also guidelines like "use RAII" in C++ or "use AutoCloseable" in Java, are about assuring the absence of leaks and do not belong here either.
+Guidelines like "use std::vector instead of std::list" in {cpp}, or "avoid java.utils.vector" in Java, are about performance and that's why they do not belong here.
+Also guidelines like "use RAII" in {cpp} or "use AutoCloseable" in Java, are about assuring the absence of leaks and do not belong here either.

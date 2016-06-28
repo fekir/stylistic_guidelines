@@ -5,7 +5,7 @@ Everyone has their favorite workflow, the same is true when applying guidelines 
 
 The problem with most tools, as far as I know, is that they do not issue a warning when a guideline is not respected, but they "fix" the code. Problem may arise in some particular cases, and you may miss them if one of this tool runs automatically before committing in your repository.
 
-I prefer to run this tools manually, so that I can give a last look to the code before committing. In this case the formatting tools won't run automatically and you may forget to use them. The code may therefore break in some points the guidelines, but the important point is that it works, and that it is readable.
+I prefer to run this tools manually, so that I can give a last look to the code before committing. In this case the formatting tools won't run automatically and you may forget to use them. The code may therefore break in some points the guidelines, but the important thing is that the code is readable, and that it works.
 
 
 Here is my workflow:
@@ -61,4 +61,3 @@ git diff --cached <filename>
 
 
 Of course there are graphical tools for working with git too, you do not have to use the CLI.
-
