@@ -438,7 +438,7 @@ In C++ you can also use auto to avoid writing long identifiers for the variable 
 
 [source,c++]
 ----
-const auto cit = my_vector.cbegin()
+const auto cit = my_vector.cbegin();
 const std::vector<std::string>::const_iterator cit = my_vector.cbegin();
 ----
 
