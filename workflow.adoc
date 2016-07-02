@@ -60,7 +60,7 @@ git checkout <file>
 All your previous changes, that has been staged, are still staged, ready to be committed.
 
 
-If you want to see the changes of a file that has already been staged, use the --cached parameter:
+If you want to see the changes of a file that has already been staged, without unstaging it, use the --cached parameter:
 [listing]
 git diff --cached <filename>
 
