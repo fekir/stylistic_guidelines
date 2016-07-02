@@ -7,7 +7,7 @@
 			<value type="bool" key="AlignAssignments">false</value>
 			<value type="bool" key="AutoSpacesForTabs">false</value>
 			<value type="bool" key="BindStarToIdentifier">false</value>
-			<value type="bool" key="BindStarToLeftSpecifier">false</value>
+			<value type="bool" key="BindStarToLeftSpecifier">true</value>
 			<value type="bool" key="BindStarToRightSpecifier">false</value>
 			<value type="bool" key="BindStarToTypeName">true</value>
 			<value type="bool" key="ExtraPaddingForConditionsIfConfusingAlign">false</value>
