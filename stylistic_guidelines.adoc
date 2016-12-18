@@ -565,6 +565,7 @@ By grouping together the parameters, we do not need to break a statement on mult
 HWND CreateWindowEx(const CreateWindowExParam&, const size_and_position&);
 ----
 without loosing much information, whereas
+
 [source, c++]
 ----
 HWND CreateWindowEx(DWORD, LPCTSTR, LPCTSTR, DWORD, int, int, int, int, HWND, HMENU, HINSTANCE , LPVOID);
